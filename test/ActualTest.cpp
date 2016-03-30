@@ -1,6 +1,6 @@
 
 #include <CppUTest/TestHarness.h>
-#include "matcher/Matcher.h"
+#include "matcher/Actual.h"
 #include "matcher/CompareMatcher.h"
 
 using namespace matcher;

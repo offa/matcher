@@ -1,6 +1,6 @@
 
-#ifndef MATCHER_H
-#define MATCHER_H
+#ifndef ACTUAL_H
+#define ACTUAL_H
 
 #include <tuple>
 
@@ -43,5 +43,5 @@ namespace matcher
 
 }
 
-#endif /* MATCHER_H */
+#endif /* ACTUAL_H */
 
