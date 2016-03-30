@@ -42,6 +42,8 @@ namespace matcher
                 return std::make_tuple(result, this->m_descr);
             }
             
+        protected:
+            
             const Expected2& m_expected2;
         };
         
