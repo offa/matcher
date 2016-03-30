@@ -1,28 +1,66 @@
-language: cpp
+language: generic
 
-compiler:
-    - gcc
+cache:
+    apt: true
 
-env:
-    - BUILD_TYPE=Debug
-    - BUILD_TYPE=Release
+matrix:
+    include:
+    - env: CXX=g++-5 CC=gcc-5
+      addons:
+        apt:
+          packages:
+            - g++-5
+            - cmake
+          sources: &sources
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise
+            - llvm-toolchain-precise-3.7
+            - llvm-toolchain-precise-3.6
+            - kalakris-cmake
+    - env: CXX=g++-4.9 CC=gcc-4.9
+      addons:
+        apt:
+          packages:
+            - g++-4.9
+            - cmake
+          sources: *sources
+    - env: CXX=g++-4.8 CC=gcc-4.8
+      addons:
+        apt:
+          packages:
+            - g++-4.8
+            - cmake
+          sources: *sources
+    - env: CXX=clang++-3.8 CC=clang-3.8
+      addons:
+        apt:
+          packages:
+            - clang-3.8
+            - cmake
+          sources: *sources
+    - env: CXX=clang++-3.7 CC=clang-3.7
+      addons:
+        apt:
+          packages:
+            - clang-3.7
+            - cmake
+          sources: *sources
+    - env: CXX=clang++-3.6 CC=clang-3.6
+      addons:
+        apt:
+          packages:
+            - clang-3.6
+            - cmake
+          sources: *sources
 
 script:
     - mkdir build && cd build
-    - cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} ..
+    - cmake ..
     - make all
     - make unittest
 
-addons:
-    apt:
-        sources:
-            - ubuntu-toolchain-r-test
-            - kalakris-cmake
-        packages:
-            - g++-5
-            - cmake
-
 before_install:
+    # Install CppUTest
     - export CPPUTEST_VERSION=master
     - export CPPUTEST=cpputest-${CPPUTEST_VERSION}
     - wget https://github.com/cpputest/cpputest/archive/${CPPUTEST_VERSION}.tar.gz
