@@ -11,7 +11,7 @@ TEST_GROUP(ContainerMatcherTest)
     void setup() override
     {
         vec = std::vector<int>{1, 2, 3};
-        arr = std::array<int, size>{1, 2, 3};
+        arr = std::array<int, size>{{1, 2, 3}};
         str = "abc";
     }
 
@@ -81,7 +81,7 @@ TEST(ContainerMatcherTest, eachIs)
     CHECK_MATCHER(arr, eachIs(3), false, "eachIs");
     CHECK_MATCHER(str, eachIs(3), false, "eachIs");
     vec = std::vector<int>(3, 3);
-    arr = std::array<int, size>{3, 3, 3};
+    arr = std::array<int, size>{{3, 3, 3}};
     str = "yyy";
     CHECK_MATCHER(vec, eachIs(3), true, "eachIs");
     CHECK_MATCHER(str, eachIs('y'), true, "eachIs");
