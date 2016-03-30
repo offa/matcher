@@ -4,7 +4,8 @@
 [![GitHub release](https://img.shields.io/github/release/offa/matcher)](https://github.com/offa/matcher/releases)
 [![License](https://img.shields.io/badge/license-GPLv3-yellow.svg)](LICENSE)
 
-Matcher for C++11.
+C++11 Hamcrest like Matcher implementation.
+
 
 ## Requirements
 
