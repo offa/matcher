@@ -11,7 +11,7 @@ namespace matcher
         template<class Expected1, class Expected2>
         struct Both : protected MatcherBase<Expected1>
         {
-            Both(const Expected1& e1, const Expected2& e2) : MatcherBase<Expected1>(e1), m_expected2(e2)
+            Both(const Expected1& e1, const Expected2& e2, const std::string& descr) : MatcherBase<Expected1>(e1, descr), m_expected2(e2)
             {
             }
 
@@ -19,7 +19,7 @@ namespace matcher
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = std::get<0>(this->m_expected(actual)) && std::get<0>(m_expected2(actual));
-                return std::make_tuple(result, "both");
+                return std::make_tuple(result, this->m_descr);
             }
             
             const Expected2& m_expected2;
@@ -35,7 +35,7 @@ namespace matcher
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = !std::get<0>(this->m_expected(actual));
-                return std::make_tuple(result, "negate");
+                return std::make_tuple(result, this->m_descr);
             }
         };
     }
@@ -44,14 +44,14 @@ namespace matcher
     template<class Expected1, class Expected2>
     internal::Both<Expected1, Expected2> both(const Expected1& e1, const Expected2& e2)
     {
-        return internal::Both<Expected1, Expected2>(e1, e2);
+        return internal::Both<Expected1, Expected2>(e1, e2, "both");
     }
     
     
     template<class Expected>
     internal::Negate<Expected> negate(const Expected& e)
     {
-        return internal::Negate<Expected>(e);
+        return internal::Negate<Expected>(e, "negate");
     }
 }
 

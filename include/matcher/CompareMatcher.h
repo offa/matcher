@@ -16,7 +16,7 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual == this->m_expected ), "is");
+                return std::make_tuple(( actual == this->m_expected ), this->m_descr);
             }
         };
         
@@ -29,7 +29,7 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual == this->m_expected ), "eq");
+                return std::make_tuple(( actual == this->m_expected ), this->m_descr);
             }
         };
 
@@ -42,7 +42,7 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual != this->m_expected ), "ne");
+                return std::make_tuple(( actual != this->m_expected ), this->m_descr);
             }
         };
 
@@ -55,7 +55,7 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual < this->m_expected ), "lt");
+                return std::make_tuple(( actual < this->m_expected ), this->m_descr);
             }
         };
 
@@ -68,7 +68,7 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual <= this->m_expected ), "le");
+                return std::make_tuple(( actual <= this->m_expected ), this->m_descr);
             }
         };
 
@@ -81,7 +81,7 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual > this->m_expected ), "gt");
+                return std::make_tuple(( actual > this->m_expected ), this->m_descr);
             }
         };
 
@@ -94,7 +94,7 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual >= this->m_expected ), "ge");
+                return std::make_tuple(( actual >= this->m_expected ), this->m_descr);
             }
         };
     }
@@ -103,49 +103,49 @@ namespace matcher
     template<class Expected>
     internal::Is<Expected> is(const Expected& e)
     {
-        return internal::Is<Expected>(e);
+        return internal::Is<Expected>(e, "is");
     }
 
     
     template<class Expected>
     internal::Eq<Expected> eq(const Expected& e)
     {
-        return internal::Eq<Expected>(e);
+        return internal::Eq<Expected>(e, "eq");
     }
     
     
     template<class Expected>
     internal::Ne<Expected> ne(const Expected& e)
     {
-        return internal::Ne<Expected>(e);
+        return internal::Ne<Expected>(e, "ne");
     }
     
     
     template<class Expected>
     internal::Lt<Expected> lt(const Expected& e)
     {
-        return internal::Lt<Expected>(e);
+        return internal::Lt<Expected>(e, "lt");
     }
     
     
     template<class Expected>
     internal::Le<Expected> le(const Expected& e)
     {
-        return internal::Le<Expected>(e);
+        return internal::Le<Expected>(e, "le");
     }
     
     
     template<class Expected>
     internal::Gt<Expected> gt(const Expected& e)
     {
-        return internal::Gt<Expected>(e);
+        return internal::Gt<Expected>(e, "gt");
     }
     
     
     template<class Expected>
     internal::Ge<Expected> ge(const Expected& e)
     {
-        return internal::Ge<Expected>(e);
+        return internal::Ge<Expected>(e, "ge");
     }
     
 }

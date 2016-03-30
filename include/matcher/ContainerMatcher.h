@@ -19,29 +19,33 @@ namespace matcher
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = std::find(std::begin(actual), std::end(actual), this->m_expected) != std::end(actual);
-                return std::make_tuple(result, "contains");
+                return std::make_tuple(result, this->m_descr);
             }
         };
 
         
         struct IsEmpty : protected MatcherBase<void>
         {
+            using MatcherBase<void>::MatcherBase;
+            
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = actual.empty();
-                return std::make_tuple(result, "isEmpty");
+                return std::make_tuple(result, this->m_descr);
             }
         };
 
         
         struct IsNotEmpty : protected MatcherBase<void>
         {
+            using MatcherBase<void>::MatcherBase;
+            
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = actual.empty();
-                return std::make_tuple(!result, "isNotEmpty");
+                return std::make_tuple(!result, this->m_descr);
             }
         };
 
@@ -55,7 +59,7 @@ namespace matcher
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = ( actual.size() == static_cast<typename Actual::size_type>(this->m_expected) );
-                return std::make_tuple(result, "sizeIs");
+                return std::make_tuple(result, this->m_descr);
             }
         };
 
@@ -69,7 +73,7 @@ namespace matcher
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = std::all_of(std::begin(actual), std::end(actual), [&](const Expected& value) { return this->m_expected == value; });
-                return std::make_tuple(result, "eachIs");
+                return std::make_tuple(result, this->m_descr);
             }
         };
 
@@ -83,7 +87,7 @@ namespace matcher
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = std::equal(std::begin(actual), std::end(actual), std::begin(this->m_expected));
-                return std::make_tuple(result, "elementsAre");
+                return std::make_tuple(result, this->m_descr);
             }
         };
 
@@ -97,7 +101,7 @@ namespace matcher
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 bool result = std::is_permutation(std::begin(actual), std::end(actual), std::begin(this->m_expected));
-                return std::make_tuple(result, "elementsAreUnordered");
+                return std::make_tuple(result, this->m_descr);
             }
         };
     }
@@ -106,53 +110,53 @@ namespace matcher
     template<class Expected>
     internal::Contains<Expected> contains(const Expected& e)
     {
-        return internal::Contains<Expected>(e);
+        return internal::Contains<Expected>(e, "contains");
     }
 
     
     inline internal::IsEmpty isEmpty()
     {
-        return internal::IsEmpty();
+        return internal::IsEmpty("isEmpty");
     }
     
     
     inline internal::IsNotEmpty isNotEmpty()
     {
-        return internal::IsNotEmpty();
+        return internal::IsNotEmpty("isNotEmpty");
     }
 
     
     template<class Expected>
     internal::SizeIs<Expected> sizeIs(const Expected& e)
     {
-        return internal::SizeIs<Expected>(e);
+        return internal::SizeIs<Expected>(e, "sizeIs");
     }
     
     template<>
     internal::SizeIs<size_t> sizeIs(const size_t& e)
     {
-        return internal::SizeIs<size_t>(e);
+        return internal::SizeIs<size_t>(e, "sizeIs");
     }
 
     
     template<class Expected>
     internal::EachIs<Expected> eachIs(const Expected& e)
     {
-        return internal::EachIs<Expected>(e);
+        return internal::EachIs<Expected>(e, "eachIs");
     }
     
     
     template<class Expected>
     internal::ElementsAre<Expected> elementsAre(const std::initializer_list<Expected>& e)
     {
-        return internal::ElementsAre<Expected>(e);
+        return internal::ElementsAre<Expected>(e, "elementsAre");
     }
     
     
     template<class Expected>
     internal::ElementsAreUnordered<Expected> elementsAreUnordered(const std::initializer_list<Expected>& e)
     {
-        return internal::ElementsAreUnordered<Expected>(e);
+        return internal::ElementsAreUnordered<Expected>(e, "elementsAreUnordered");
     }
 }
 

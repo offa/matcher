@@ -8,26 +8,36 @@ namespace matcher
 {
     namespace internal
     {
+
         template<class Expected>
         class MatcherBase
         {
         public:
 
-            explicit MatcherBase(const Expected& expected) : m_expected(expected)
+            MatcherBase(const Expected& expected, const std::string& descr) : m_expected(expected), m_descr(descr)
             {
             }
 
         protected:
 
             const Expected& m_expected;
+            const std::string m_descr;
         };
 
-        
         template<>
         class MatcherBase<void>
         {
+        public:
+
+            explicit MatcherBase(const std::string& descr) : m_descr(descr)
+            {
+            }
+            
+        protected:
+            
+            const std::string m_descr;
         };
-        
+
     }
 }
 
