@@ -27,6 +27,7 @@ using namespace matcher;
 TEST_GROUP(StringMatcherTest)
 {
     const std::string str = "abc";
+    const std::string empty = "";
 };
 
 TEST(StringMatcherTest, eq)
@@ -43,20 +44,20 @@ TEST(StringMatcherTest, strLength)
 
 TEST(StringMatcherTest, lengthIfEmpty)
 {
-    CHECK_MATCHER(std::string(""), strLength(0), true, "strLength");
-    CHECK_MATCHER(std::string(""), strLength(1), false, "strLength");
+    CHECK_MATCHER(empty, strLength(0), true, "strLength");
+    CHECK_MATCHER(empty, strLength(1), false, "strLength");
 }
 
 TEST(StringMatcherTest, empty)
 {
-    CHECK_MATCHER(std::string(""), strEmpty(), true, "strEmpty");
+    CHECK_MATCHER(empty, strEmpty(), true, "strEmpty");
     CHECK_MATCHER(str, strEmpty(), false, "strEmpty");
 }
 
 TEST(StringMatcherTest, notEmpty)
 {
     CHECK_MATCHER(str, strNotEmpty(), true, "strNotEmpty");
-    CHECK_MATCHER(std::string(""), strNotEmpty(), false, "strNotEmpty");
+    CHECK_MATCHER(empty, strNotEmpty(), false, "strNotEmpty");
 }
 
 TEST(StringMatcherTest, strStartsWith)
