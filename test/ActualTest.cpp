@@ -12,24 +12,24 @@ TEST_GROUP(ActualTest)
 
 TEST(ActualTest, expectThatReturnsTrueOnMatch)
 {
-    auto result = expect(value).that(eq(value));
+    auto result = expect(value).that(is(value));
     CHECK_TRUE(std::get<0>(result));
 }
 
 TEST(ActualTest, expectThatReturnsFalseOnMismatch)
 {
-    auto result = expect(value).that(eq(value + 1));
+    auto result = expect(value).that(is(value + 1));
     CHECK_FALSE(std::get<0>(result));
 }
 
 TEST(ActualTest, expectMatchReturnsTrueOnMatch)
 {
-    bool result = expect(value).match(eq(value));
+    bool result = expect(value).match(is(value));
     CHECK_TRUE(result);
 }
 
 TEST(ActualTest, expectMatchReturnsFalseOnMismatch)
 {
-    bool result = expect(value).match(eq(value + 1));
+    bool result = expect(value).match(is(value + 1));
     CHECK_FALSE(result);
 }

@@ -9,6 +9,12 @@ TEST_GROUP(CompareMatcherTest)
 {
 };
 
+TEST(CompareMatcherTest, is)
+{
+    CHECK_MATCHER(3, is(3), true, "is");
+    CHECK_MATCHER(4, is(3), false, "is");
+}
+
 TEST(CompareMatcherTest, eq)
 {
     CHECK_MATCHER(3, eq(3), true, "eq");
