@@ -9,19 +9,6 @@ namespace matcher
     namespace internal
     {
         template<class Expected>
-        struct Is : protected MatcherBase<Expected>
-        {
-            using MatcherBase<Expected>::MatcherBase;
-
-            template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
-            {
-                return std::make_tuple(( actual == this->m_expected ), this->m_descr);
-            }
-        };
-        
-        
-        template<class Expected>
         struct Eq : protected MatcherBase<Expected>
         {
             using MatcherBase<Expected>::MatcherBase;
@@ -101,9 +88,9 @@ namespace matcher
     
     
     template<class Expected>
-    internal::Is<Expected> is(const Expected& e)
+    internal::Eq<Expected> is(const Expected& e)
     {
-        return internal::Is<Expected>(e, "is");
+        return internal::Eq<Expected>(e, "is");
     }
 
     
