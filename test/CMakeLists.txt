@@ -30,7 +30,14 @@ list(APPEND TEST_SRC ActualTest.cpp
                     )
 _add_test("AllTests" TEST_SRC)
 
-add_custom_target(unittest AllTests
+
+set(TEST_FLAGS -c)
+
+if( UNITTEST_VERBOSE )
+    set(TEST_FLAGS ${TEST_FLAGS} -v)
+endif()
+
+add_custom_target(unittest AllTests ${TEST_FLAGS}
                         COMMENT "Running unittests\n\n"
                         VERBATIM
                         )

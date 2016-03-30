@@ -4,7 +4,7 @@ project(matcher)
 set(PROJECT_VERSION 0.0.1-dev)
 
 option(UNITTEST "Build unit tests" ON)
-
+option(UNITTEST_VERBOSE "Verbose unit test output" OFF)
 
 message(STATUS "~~ ${PROJECT_NAME} ${PROJECT_VERSION} ~~")
 
