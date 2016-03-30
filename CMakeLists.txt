@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 project(matcher)
-set(PROJECT_VERSION 0.0.1)
+set(PROJECT_VERSION 0.0.1-dev)
 
 option(UNITTEST "Build unit tests" ON)
 
