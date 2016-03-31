@@ -9,8 +9,52 @@ C++11 Hamcrest like Matcher implementation.
 
 ## Requirements
 
- - [**CMake**](http://www.cmake.org/) - for building *(Optional)*
+ - [**CMake**](http://www.cmake.org/) - for building tests *(Optional)*
  - [**CppUTest**](https://github.com/cpputest/cpputest) - for testing *(Optional)*
+
+
+## Installtion
+
+Header only - no compilation / installation is required.
+
+
+## Example
+
+```cpp
+#include "matcher/Matcher.h"
+#include <cassert>
+
+int main(int argc, char** argv)
+{
+    using namespace matcher;
+
+    std::vector<int> v = { 0, 1, 2, 3 };
+
+    auto res = expect(v).that(sizeIs(4));
+    assert(std::get<0>(res));
+
+    bool match;
+    std::tie(match, std::ignore) = expect(v).that(elementsAre({0, 1, 2, 3}));
+    assert(match);
+
+    match = expect(123.456).match(doubleNear(123.45, 0.001));
+    assert(match);
+
+    return 0;
+}
+```
+
+
+## Testing
+
+```
+mkdir build
+cmake ..
+make unittest
+```
+
+It's also possible to use `make test` / `ctest` instead. For `unittest` it's possible to switch verbosity by CMake option.
+
 
 ## License
 
