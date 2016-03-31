@@ -50,7 +50,7 @@ matrix:
 script:
     - mkdir build && cd build
     - cmake ..
-    - make all
+    - make
     - make unittest
 
 before_install:
