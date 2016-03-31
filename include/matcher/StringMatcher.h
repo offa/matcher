@@ -116,7 +116,15 @@ namespace matcher
     }
 
     
-    inline internal::StrLength<size_t> strLength(size_t e)
+    template<class Expected>
+    internal::StrLength<Expected> strLength(const Expected& e)
+    {
+        return internal::StrLength<Expected>(e, "strLength");
+    }
+
+    
+    template<>
+    internal::StrLength<size_t> strLength(const size_t& e)
     {
         return internal::StrLength<size_t>(e, "strLength");
     }

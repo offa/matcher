@@ -144,8 +144,15 @@ namespace matcher
         return internal::IsNotEmpty("isNotEmpty");
     }
 
-
-    inline internal::SizeIs<size_t> sizeIs(size_t e)
+    
+    template<class Expected>
+    internal::SizeIs<Expected> sizeIs(const Expected& e)
+    {
+        return internal::SizeIs<Expected>(e, "sizeIs");
+    }
+    
+    template<>
+    internal::SizeIs<size_t> sizeIs(const size_t& e)
     {
         return internal::SizeIs<size_t>(e, "sizeIs");
     }
