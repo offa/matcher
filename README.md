@@ -50,6 +50,7 @@ int main(int argc, char** argv)
 ```
 mkdir build
 cmake ..
+make
 make unittest
 ```
 
