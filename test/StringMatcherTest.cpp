@@ -33,7 +33,13 @@ TEST_GROUP(StringMatcherTest)
 TEST(StringMatcherTest, eq)
 {
     CHECK_MATCHER(str, strEq(str), true, "strEq");
-    CHECK_MATCHER(str, strEq(std::string("aBc")), false, "strEq");
+    CHECK_MATCHER(str, strEq("aBc"), false, "strEq");
+}
+
+TEST(StringMatcherTest, eqIgnoreCase)
+{
+    CHECK_MATCHER(str, strEqIgnoreCase<std::string>("AbC"), true, "strEqIgnoreCase");
+    CHECK_MATCHER(str, strEqIgnoreCase(std::string("aBcd")), false, "strEqIgnoreCase");
 }
 
 TEST(StringMatcherTest, strLength)
@@ -66,9 +72,21 @@ TEST(StringMatcherTest, strStartsWith)
     CHECK_MATCHER(str, strStartsWith(std::string("aB")), false, "strStartsWith");
 }
 
-TEST(StringMatcherTest, strEndsWIth)
+TEST(StringMatcherTest, strStartsWithIgnoreCase)
+{
+    CHECK_MATCHER(str, strStartsWithIgnoreCase(std::string("A")), true, "strStartsWithIgnoreCase");
+    CHECK_MATCHER(str, strStartsWithIgnoreCase(std::string("aC")), false, "strStartsWithIgnoreCase");
+}
+
+TEST(StringMatcherTest, strEndsWith)
 {
     CHECK_MATCHER(str, strEndsWith(std::string("c")), true, "strEndsWith");
     CHECK_MATCHER(str, strEndsWith(std::string("Bc")), false, "strEndsWith");
+}
+
+TEST(StringMatcherTest, strEndsWithIgnoreCase)
+{
+    CHECK_MATCHER(str, strEndsWithIgnoreCase(std::string("C")), true, "strEndsWithIgnoreCase");
+    CHECK_MATCHER(str, strEndsWithIgnoreCase(std::string("Bd")), false, "strEndsWithIgnoreCase");
 }
 

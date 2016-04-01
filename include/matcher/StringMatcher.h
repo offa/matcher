@@ -41,8 +41,7 @@ namespace matcher
                 return std::make_tuple(result, this->m_descr);
             }
         };
-        
-        
+
         template<class Expected>
         struct StrLength : protected MatcherBase<Expected>
         {
@@ -51,11 +50,11 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = ( actual.length() == static_cast<typename Actual::size_type>(this->m_expected) );
+                bool result = (actual.length() == static_cast<typename Actual::size_type>(this->m_expected));
                 return std::make_tuple(result, this->m_descr);
             }
         };
-        
+
         
         template<class Expected>
         struct StrStartsWith : protected MatcherBase<Expected>
@@ -65,11 +64,11 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::mismatch(actual.begin(), actual.end(), this->m_expected.begin()).second == this->m_expected.end();
+                bool result = std::mismatch(std::begin(actual), std::end(actual), std::begin(this->m_expected)).second == std::end(this->m_expected);
                 return std::make_tuple(result, this->m_descr);
             }
         };
-        
+
         
         template<class Expected>
         struct StrEndsWith : protected MatcherBase<Expected>
@@ -83,28 +82,28 @@ namespace matcher
                 return std::make_tuple(result, this->m_descr);
             }
         };
-        
+
         
         struct StrEmpty : protected MatcherBase<void>
         {
             using MatcherBase<void>::MatcherBase;
-            
+
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
                 return std::make_tuple(actual.empty(), this->m_descr);
             }
         };
-        
+
         
         struct StrNotEmpty : protected MatcherBase<void>
         {
             using MatcherBase<void>::MatcherBase;
-            
+
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual.empty() == false ), this->m_descr);
+                return std::make_tuple((actual.empty() == false), this->m_descr);
             }
         };
     }
@@ -115,40 +114,60 @@ namespace matcher
         return internal::StrEq<Expected>(e, "strEq");
     }
 
-    
+    template<class Expected>
+    internal::StrEq<Expected> strEqIgnoreCase(const Expected& e)
+    {
+        auto lowered{e};
+        std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
+        return internal::StrEq<Expected>(lowered, "strEqIgnoreCase");
+    }
+
     template<class Expected>
     internal::StrLength<Expected> strLength(const Expected& e)
     {
         return internal::StrLength<Expected>(e, "strLength");
     }
 
-    
     template<>
     internal::StrLength<size_t> strLength(const size_t& e)
     {
         return internal::StrLength<size_t>(e, "strLength");
     }
-    
-    
+
     template<class Expected>
     internal::StrStartsWith<Expected> strStartsWith(const Expected& e)
     {
         return internal::StrStartsWith<Expected>(e, "strStartsWith");
     }
-    
-    
+
+    template<class Expected>
+    internal::StrStartsWith<Expected> strStartsWithIgnoreCase(const Expected& e)
+    {
+        auto lowered{e};
+        std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
+        return internal::StrStartsWith<Expected>(lowered, "strStartsWithIgnoreCase");
+    }
+
     template<class Expected>
     internal::StrEndsWith<Expected> strEndsWith(const Expected& e)
     {
         return internal::StrEndsWith<Expected>(e, "strEndsWith");
     }
-    
+
+    template<class Expected>
+    internal::StrEndsWith<Expected> strEndsWithIgnoreCase(const Expected& e)
+    {
+        auto lowered{e};
+        std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
+        return internal::StrEndsWith<Expected>(lowered, "strEndsWithIgnoreCase");
+    }
+
     
     inline internal::StrEmpty strEmpty()
     {
         return internal::StrEmpty("strEmpty");
     }
-    
+
     
     inline internal::StrNotEmpty strNotEmpty()
     {
