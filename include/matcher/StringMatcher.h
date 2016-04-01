@@ -126,7 +126,7 @@ namespace matcher
     template<class Expected>
     internal::StrEq<Expected> strEqIgnoreCase(const Expected& e)
     {
-        auto lowered{e};
+        auto lowered = e;
         std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
         return internal::StrEq<Expected>(lowered, "strEqIgnoreCase");
     }
@@ -152,7 +152,7 @@ namespace matcher
     template<class Expected>
     internal::StrStartsWith<Expected> strStartsWithIgnoreCase(const Expected& e)
     {
-        auto lowered{e};
+        auto lowered = e;
         std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
         return internal::StrStartsWith<Expected>(lowered, "strStartsWithIgnoreCase");
     }
@@ -166,7 +166,7 @@ namespace matcher
     template<class Expected>
     internal::StrEndsWith<Expected> strEndsWithIgnoreCase(const Expected& e)
     {
-        auto lowered{e};
+        auto lowered = e;
         std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
         return internal::StrEndsWith<Expected>(lowered, "strEndsWithIgnoreCase");
     }
