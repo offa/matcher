@@ -116,6 +116,7 @@ namespace matcher
             }
         };
     }
+    
 
     template<class Expected>
     internal::StrEq<Expected> strEq(const Expected& e)
@@ -123,14 +124,7 @@ namespace matcher
         return internal::StrEq<Expected>(e, "strEq");
     }
 
-    template<class Expected>
-    internal::StrEq<Expected> strEqIgnoreCase(const Expected& e)
-    {
-        auto lowered = e;
-        std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
-        return internal::StrEq<Expected>(lowered, "strEqIgnoreCase");
-    }
-
+    
     template<class Expected>
     internal::StrLength<Expected> strLength(const Expected& e)
     {
@@ -149,26 +143,11 @@ namespace matcher
         return internal::StrStartsWith<Expected>(e, "strStartsWith");
     }
 
-    template<class Expected>
-    internal::StrStartsWith<Expected> strStartsWithIgnoreCase(const Expected& e)
-    {
-        auto lowered = e;
-        std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
-        return internal::StrStartsWith<Expected>(lowered, "strStartsWithIgnoreCase");
-    }
-
+    
     template<class Expected>
     internal::StrEndsWith<Expected> strEndsWith(const Expected& e)
     {
         return internal::StrEndsWith<Expected>(e, "strEndsWith");
-    }
-
-    template<class Expected>
-    internal::StrEndsWith<Expected> strEndsWithIgnoreCase(const Expected& e)
-    {
-        auto lowered = e;
-        std::transform(std::begin(e), std::end(e), std::begin(lowered), ::tolower);
-        return internal::StrEndsWith<Expected>(lowered, "strEndsWithIgnoreCase");
     }
 
     
