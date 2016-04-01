@@ -18,8 +18,8 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef FLOATMATCHER_H
-#define FLOATMATCHER_H
+#ifndef DOUBLEMATCHER_H
+#define DOUBLEMATCHER_H
 
 #include "MatcherBase.h"
 #include <cmath>
@@ -57,5 +57,5 @@ namespace matcher
     }
 }
 
-#endif /* FLOATMATCHER_H */
+#endif /* DOUBLEMATCHER_H */
 

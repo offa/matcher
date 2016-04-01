@@ -18,17 +18,17 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "matcher/FloatMatcher.h"
+#include "matcher/DoubleMatcher.h"
 #include "Helper.h"
 #include <CppUTest/TestHarness.h>
 
 using namespace matcher;
 
-TEST_GROUP(FloatMatcherTest)
+TEST_GROUP(DoubleMatcherTest)
 {
 };
 
-TEST(FloatMatcherTest, doubleNear)
+TEST(DoubleMatcherTest, doubleNear)
 {
     CHECK_MATCHER(3.0, doubleNear(3.0, 0.01), true, "doubleNear");
     CHECK_MATCHER(3.0, doubleNear(3.003, 0.01), true, "doubleNear");
@@ -36,7 +36,7 @@ TEST(FloatMatcherTest, doubleNear)
     CHECK_MATCHER(3.0, doubleNear(3.05, 0.01), false, "doubleNear");
 }
 
-TEST(FloatMatcherTest, doubleNearWithFloat)
+TEST(DoubleMatcherTest, doubleNearWithFloat)
 {
     CHECK_MATCHER(3.0f, doubleNear(3.0f, 0.01f), true, "doubleNear");
     CHECK_MATCHER(3.0f, doubleNear(3.003f, 0.01f), true, "doubleNear");
