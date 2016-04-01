@@ -111,6 +111,13 @@ namespace matcher
     {
         return internal::Eq<Expected>(e, "is");
     }
+    
+    
+    template<class Expected>
+    internal::Ne<Expected> isNot(const Expected& e)
+    {
+        return internal::Ne<Expected>(e, "isNot");
+    }
 
     
     template<class Expected>

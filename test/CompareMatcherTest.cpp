@@ -34,6 +34,12 @@ TEST(CompareMatcherTest, is)
     CHECK_MATCHER(4, is(3), false, "is");
 }
 
+TEST(CompareMatcherTest, isNOt)
+{
+    CHECK_MATCHER(3, isNot(4), true, "isNot");
+    CHECK_MATCHER(3, isNot(3), false, "isNot");
+}
+
 TEST(CompareMatcherTest, eq)
 {
     CHECK_MATCHER(3, eq(3), true, "eq");
