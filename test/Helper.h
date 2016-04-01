@@ -24,7 +24,8 @@
 #include <CppUTest/TestHarness.h>
 
 template<class T, class Matcher>
-void checkMatcher(const T& cmp, const Matcher& matcher, bool expectedResult, const char* expMsg, const char* file, size_t line)
+void checkMatcher(const T& cmp, const Matcher& matcher, bool expectedResult, 
+                    const char* expMsg, const char* file, size_t line)
 {
     bool result;
     std::string msg;
@@ -35,7 +36,8 @@ void checkMatcher(const T& cmp, const Matcher& matcher, bool expectedResult, con
 }
 
 
-#define CHECK_MATCHER(value, matcher, expectedResult, msg)   checkMatcher(value, matcher, expectedResult, msg, __FILE__, __LINE__)
+#define CHECK_MATCHER(value, matcher, expectedResult, msg)   \
+            checkMatcher(value, matcher, expectedResult, msg, __FILE__, __LINE__)
 
 
 

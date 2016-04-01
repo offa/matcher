@@ -33,7 +33,8 @@ namespace matcher
         {
         public:
 
-            MatcherBase(const Expected& expected, const std::string& descr) : m_expected(expected), m_descr(descr)
+            MatcherBase(const Expected& expected, const std::string& descr)
+                                : m_expected(expected), m_descr(descr)
             {
             }
 

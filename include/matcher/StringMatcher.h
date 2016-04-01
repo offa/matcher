@@ -37,7 +37,9 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::equal(std::begin(this->m_expected), std::end(this->m_expected), std::begin(actual));
+                bool result = std::equal(std::begin(this->m_expected), 
+                                        std::end(this->m_expected), 
+                                        std::begin(actual));
                 return std::make_tuple(result, this->m_descr);
             }
         };
@@ -50,7 +52,8 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = (actual.length() == static_cast<typename Actual::size_type>(this->m_expected));
+                auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
+                bool result = (actual.length() == expSize);
                 return std::make_tuple(result, this->m_descr);
             }
         };
@@ -64,7 +67,10 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::mismatch(std::begin(actual), std::end(actual), std::begin(this->m_expected)).second == std::end(this->m_expected);
+                auto itrPair = std::mismatch(std::begin(actual), 
+                                            std::end(actual), 
+                                            std::begin(this->m_expected));
+                bool result = ( itrPair.second == std::end(this->m_expected) );
                 return std::make_tuple(result, this->m_descr);
             }
         };
@@ -78,7 +84,10 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::mismatch(actual.rbegin(), actual.rend(), this->m_expected.rbegin()).second == this->m_expected.rend();
+                auto itrPair = std::mismatch(actual.rbegin(), 
+                                            actual.rend(), 
+                                            this->m_expected.rbegin());
+                bool result = ( itrPair.second == this->m_expected.rend() );
                 return std::make_tuple(result, this->m_descr);
             }
         };

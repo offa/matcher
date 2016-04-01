@@ -37,7 +37,8 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::find(std::begin(actual), std::end(actual), this->m_expected) != std::end(actual);
+                auto itr = std::find(std::begin(actual), std::end(actual), this->m_expected);
+                bool result = ( itr != std::end(actual) );
                 return std::make_tuple(result, this->m_descr);
             }
         };
@@ -77,7 +78,8 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = ( actual.size() == static_cast<typename Actual::size_type>(this->m_expected) );
+                auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
+                bool result = ( actual.size() == expSize );
                 return std::make_tuple(result, this->m_descr);
             }
         };
@@ -91,7 +93,10 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::all_of(std::begin(actual), std::end(actual), [&](const Expected& value) { return this->m_expected == value; });
+                bool result = std::all_of(std::begin(actual),
+                                        std::end(actual), 
+                                        [&](const Expected& value)
+                                            { return this->m_expected == value; });
                 return std::make_tuple(result, this->m_descr);
             }
         };
@@ -105,7 +110,9 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::equal(std::begin(actual), std::end(actual), std::begin(this->m_expected));
+                bool result = std::equal(std::begin(actual), 
+                                        std::end(actual), 
+                                        std::begin(this->m_expected));
                 return std::make_tuple(result, this->m_descr);
             }
         };
@@ -119,7 +126,9 @@ namespace matcher
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::is_permutation(std::begin(actual), std::end(actual), std::begin(this->m_expected));
+                bool result = std::is_permutation(std::begin(actual), 
+                                                std::end(actual), 
+                                                std::begin(this->m_expected));
                 return std::make_tuple(result, this->m_descr);
             }
         };

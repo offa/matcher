@@ -31,14 +31,16 @@ namespace matcher
         template<class Expected1, class Expected2>
         struct Both : protected MatcherBase<Expected1>
         {
-            Both(const Expected1& e1, const Expected2& e2, const std::string& descr) : MatcherBase<Expected1>(e1, descr), m_expected2(e2)
+            Both(const Expected1& e1, const Expected2& e2, const std::string& descr)
+                            : MatcherBase<Expected1>(e1, descr), m_expected2(e2)
             {
             }
 
             template<class Actual>
             std::tuple<bool, std::string> operator()(const Actual& actual) const
             {
-                bool result = std::get<0>(this->m_expected(actual)) && std::get<0>(m_expected2(actual));
+                bool result = ( std::get<0>(this->m_expected(actual)) 
+                                && std::get<0>(m_expected2(actual)) );
                 return std::make_tuple(result, this->m_descr);
             }
             
