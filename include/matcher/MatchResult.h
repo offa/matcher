@@ -31,7 +31,7 @@ namespace matcher
     public:
 
         MatchResult(bool result, const std::string& description)
-        : m_result(result), m_description(description)
+                            : m_result(result), m_description(description)
         {
         }
 

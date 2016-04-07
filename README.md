@@ -21,24 +21,20 @@ Header only - no compilation / installation is required.
 ## Example
 
 ```cpp
-#include "matcher/Matcher.h"
-#include <cassert>
-
 int main(int argc, char** argv)
 {
     using namespace matcher;
 
-    std::vector<int> v = { 0, 1, 2, 3 };
+    std::vector<int> v = { 0, 1, 2, 3  };
 
     auto res = expect(v).that(sizeIs(4));
-    assert(std::get<0>(res));
+    assert(res.getResult());
 
-    bool match;
-    std::tie(match, std::ignore) = expect(v).that(elementsAre({0, 1, 2, 3}));
-    assert(match);
+    auto res2 = expect(v).that(elementsAre({0, 1, 2, 3}));
+    assert(res2.getResult());
 
-    match = expect(123.456).match(doubleNear(123.45, 0.001));
-    assert(match);
+    bool res3 = expect(123.456).match(doubleNear(123.45, 0.001));
+    assert(res3);
 
     return 0;
 }
