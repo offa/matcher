@@ -48,7 +48,7 @@ matrix:
 
 script:
     - mkdir build && cd build
-    - cmake ..
+    - cmake -DUNITTEST_VERBOSE=ON ..
     - make
     - make unittest
 
