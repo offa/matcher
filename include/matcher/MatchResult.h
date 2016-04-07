@@ -18,27 +18,39 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HELPER_H
-#define HELPER_H
+#ifndef MATCHRESULT_H
+#define MATCHRESULT_H
 
-#include "matcher/MatchResult.h"
-#include <CppUTest/TestHarness.h>
+#include <string>
 
-template<class T, class Matcher>
-void checkMatcher(const T& cmp, const Matcher& matcher, bool expectedResult, 
-                    const char* expMsg, const char* file, size_t line)
+namespace matcher
 {
-    matcher::MatchResult result = matcher.operator()(cmp);
 
-    CHECK_EQUAL_LOCATION(expectedResult, result.getResult(), nullptr, file, line);
-    STRCMP_EQUAL_LOCATION(expMsg, result.getDescription().c_str(), nullptr, file, line);
+    class MatchResult
+    {
+    public:
+
+        MatchResult(bool result, const std::string& description)
+        : m_result(result), m_description(description)
+        {
+        }
+
+        bool getResult() const
+        {
+            return m_result;
+        }
+        
+        std::string getDescription() const
+        {
+            return m_description;
+        }
+
+    private:
+
+        const bool m_result;
+        const std::string& m_description;
+    };
 }
 
-
-#define CHECK_MATCHER(value, matcher, expectedResult, msg)   \
-            checkMatcher(value, matcher, expectedResult, msg, __FILE__, __LINE__)
-
-
-
-#endif /* HELPER_H */
+#endif /* MATCHRESULT_H */
 

@@ -27,6 +27,7 @@ list(APPEND TEST_SRC ActualTest.cpp
                     ContainerMatcherTest.cpp
                     DoubleMatcherTest.cpp
                     StringMatcherTest.cpp
+                    MatchResultTest.cpp
                     )
 _add_test("AllTests" TEST_SRC)
 

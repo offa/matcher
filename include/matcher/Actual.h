@@ -21,7 +21,7 @@
 #ifndef ACTUAL_H
 #define ACTUAL_H
 
-#include <tuple>
+#include "matcher/MatchResult.h"
 
 namespace matcher
 {
@@ -35,7 +35,7 @@ namespace matcher
         }
 
         template<class Matcher>
-        std::tuple<bool, std::string> that(const Matcher& m) const
+        MatchResult that(const Matcher& m) const
         {
             return m(m_value);
         }
@@ -43,7 +43,7 @@ namespace matcher
         template<class Matcher>
         bool match(const Matcher& m) const
         {
-            return std::get<0>(that(m));
+            return that(m).getResult();
         }
 
 

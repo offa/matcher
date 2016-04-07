@@ -33,9 +33,9 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual == this->m_expected ), this->m_descr);
+                return MatchResult(( actual == this->m_expected ), this->m_descr);
             }
         };
 
@@ -46,9 +46,9 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual != this->m_expected ), this->m_descr);
+                return MatchResult(( actual != this->m_expected ), this->m_descr);
             }
         };
 
@@ -59,9 +59,9 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual < this->m_expected ), this->m_descr);
+                return MatchResult(( actual < this->m_expected ), this->m_descr);
             }
         };
 
@@ -72,9 +72,9 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual <= this->m_expected ), this->m_descr);
+                return MatchResult(( actual <= this->m_expected ), this->m_descr);
             }
         };
 
@@ -85,9 +85,9 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual > this->m_expected ), this->m_descr);
+                return MatchResult(( actual > this->m_expected ), this->m_descr);
             }
         };
 
@@ -98,9 +98,9 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
-                return std::make_tuple(( actual >= this->m_expected ), this->m_descr);
+                return MatchResult(( actual >= this->m_expected ), this->m_descr);
             }
         };
     }

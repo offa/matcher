@@ -32,13 +32,13 @@ TEST_GROUP(ActualTest)
 TEST(ActualTest, expectThatReturnsTrueOnMatch)
 {
     auto result = expect(value).that(is(value));
-    CHECK_TRUE(std::get<0>(result));
+    CHECK_TRUE(result.getResult());
 }
 
 TEST(ActualTest, expectThatReturnsFalseOnMismatch)
 {
     auto result = expect(value).that(is(value + 1));
-    CHECK_FALSE(std::get<0>(result));
+    CHECK_FALSE(result.getResult());
 }
 
 TEST(ActualTest, expectMatchReturnsTrueOnMatch)

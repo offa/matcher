@@ -37,12 +37,12 @@ namespace matcher
             }
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
                 using std::fabs;
                 bool result = ( fabs(actual - this->m_expected ) 
                                 <= m_abs * std::max(fabs(actual), fabs(this->m_expected)));
-                return std::make_tuple(result, this->m_descr);
+                return MatchResult(result, this->m_descr);
             }
 
         protected:

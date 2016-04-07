@@ -37,11 +37,11 @@ namespace matcher
             }
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
-                bool result = ( std::get<0>(this->m_expected(actual)) 
-                                && std::get<0>(m_expected2(actual)) );
-                return std::make_tuple(result, this->m_descr);
+                bool result = ( this->m_expected(actual).getResult() 
+                                && m_expected2(actual).getResult() );
+                return MatchResult(result, this->m_descr);
             }
             
         protected:
@@ -56,10 +56,10 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
             
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
-                bool result = !std::get<0>(this->m_expected(actual));
-                return std::make_tuple(result, this->m_descr);
+                bool result = !this->m_expected(actual).getResult();
+                return MatchResult(result, this->m_descr);
             }
         };
     }

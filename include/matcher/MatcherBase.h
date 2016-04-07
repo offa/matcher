@@ -21,7 +21,7 @@
 #ifndef MATCHERBASE_H
 #define MATCHERBASE_H
 
-#include <tuple>
+#include "matcher/MatchResult.h"
 
 namespace matcher
 {

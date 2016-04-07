@@ -35,11 +35,11 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
 
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
                 auto itr = std::find(std::begin(actual), std::end(actual), this->m_expected);
                 bool result = ( itr != std::end(actual) );
-                return std::make_tuple(result, this->m_descr);
+                return MatchResult(result, this->m_descr);
             }
         };
 
@@ -49,10 +49,10 @@ namespace matcher
             using MatcherBase<void>::MatcherBase;
             
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
                 bool result = actual.empty();
-                return std::make_tuple(result, this->m_descr);
+                return MatchResult(result, this->m_descr);
             }
         };
 
@@ -62,10 +62,10 @@ namespace matcher
             using MatcherBase<void>::MatcherBase;
             
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
                 bool result = actual.empty();
-                return std::make_tuple(!result, this->m_descr);
+                return MatchResult(!result, this->m_descr);
             }
         };
 
@@ -76,11 +76,11 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
             
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
                 auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
                 bool result = ( actual.size() == expSize );
-                return std::make_tuple(result, this->m_descr);
+                return MatchResult(result, this->m_descr);
             }
         };
 
@@ -91,13 +91,13 @@ namespace matcher
             using MatcherBase<Expected>::MatcherBase;
             
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
                 bool result = std::all_of(std::begin(actual),
                                         std::end(actual), 
                                         [&](const Expected& value)
                                             { return this->m_expected == value; });
-                return std::make_tuple(result, this->m_descr);
+                return MatchResult(result, this->m_descr);
             }
         };
 
@@ -108,12 +108,12 @@ namespace matcher
             using MatcherBase<std::initializer_list<Expected>>::MatcherBase;
             
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
                 bool result = std::equal(std::begin(actual), 
                                         std::end(actual), 
                                         std::begin(this->m_expected));
-                return std::make_tuple(result, this->m_descr);
+                return MatchResult(result, this->m_descr);
             }
         };
 
@@ -124,12 +124,12 @@ namespace matcher
             using MatcherBase<std::initializer_list<Expected>>::MatcherBase;
             
             template<class Actual>
-            std::tuple<bool, std::string> operator()(const Actual& actual) const
+            MatchResult operator()(const Actual& actual) const
             {
                 bool result = std::is_permutation(std::begin(actual), 
                                                 std::end(actual), 
                                                 std::begin(this->m_expected));
-                return std::make_tuple(result, this->m_descr);
+                return MatchResult(result, this->m_descr);
             }
         };
     }
