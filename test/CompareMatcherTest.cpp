@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ TEST(CompareMatcherTest, is)
     CHECK_MATCHER(4, is(3), false, "is");
 }
 
-TEST(CompareMatcherTest, isNOt)
+TEST(CompareMatcherTest, isNot)
 {
     CHECK_MATCHER(3, isNot(4), true, "isNot");
     CHECK_MATCHER(3, isNot(3), false, "isNot");
