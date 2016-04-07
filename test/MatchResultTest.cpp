@@ -29,9 +29,9 @@ TEST_GROUP(MatchResultTest)
 
 TEST(MatchResultTest, resultValues)
 {
-    MatchResult res(true, "abc");
+    const std::string descr = "abc";
+    MatchResult res(true, descr);
     CHECK_TRUE(res.getResult());
-    std::string descr = res.getDescription();
-    STRCMP_EQUAL("abc", descr.c_str());
+    CHECK_EQUAL(descr, res.getDescription());
 }
 
