@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -31,6 +31,7 @@ TEST(MatchResultTest, resultValues)
 {
     MatchResult res(true, "abc");
     CHECK_TRUE(res.getResult());
-    STRCMP_EQUAL("abc", res.getDescription().c_str());
+    std::string descr = res.getDescription();
+    STRCMP_EQUAL("abc", descr.c_str());
 }
 
