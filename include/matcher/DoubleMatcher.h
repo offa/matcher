@@ -31,8 +31,8 @@ namespace matcher
         template<class Expected>
         struct DoubleNear : protected MatcherBase<Expected>
         {
-            DoubleNear(const Expected& expected, const Expected& abs, const std::string& descr)
-                            : MatcherBase<Expected>(expected, descr), m_abs(abs)
+            DoubleNear(const Expected& expected, const Expected& epsilon, const std::string& description)
+                            : MatcherBase<Expected>(expected, description), m_epsilon(epsilon)
             {
             }
 
@@ -41,21 +41,21 @@ namespace matcher
             {
                 using std::fabs;
                 bool result = ( fabs(actual - this->m_expected ) 
-                                <= m_abs * std::max(fabs(actual), fabs(this->m_expected)));
-                return MatchResult(result, this->m_descr);
+                                <= m_epsilon * std::max(fabs(actual), fabs(this->m_expected)));
+                return MatchResult(result, this->m_description);
             }
 
         protected:
 
-            const Expected& m_abs;
+            const Expected& m_epsilon;
         };
     }
 
     
     template<class Expected>
-    internal::DoubleNear<Expected> doubleNear(const Expected& e, const Expected& abs)
+    internal::DoubleNear<Expected> doubleNear(const Expected& expected, const Expected& epsilon)
     {
-        return internal::DoubleNear<Expected>(e, abs, "doubleNear");
+        return internal::DoubleNear<Expected>(expected, epsilon, "doubleNear");
     }
 }
 

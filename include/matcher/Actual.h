@@ -41,9 +41,9 @@ namespace matcher
         }
 
         template<class Matcher>
-        bool match(const Matcher& m) const
+        bool match(const Matcher& matcher) const
         {
-            return that(m).getResult();
+            return that(matcher).getResult();
         }
 
 

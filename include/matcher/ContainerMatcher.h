@@ -39,7 +39,7 @@ namespace matcher
             {
                 auto itr = std::find(std::begin(actual), std::end(actual), this->m_expected);
                 bool result = ( itr != std::end(actual) );
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -52,7 +52,7 @@ namespace matcher
             MatchResult operator()(const Actual& actual) const
             {
                 bool result = actual.empty();
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -65,7 +65,7 @@ namespace matcher
             MatchResult operator()(const Actual& actual) const
             {
                 bool result = actual.empty();
-                return MatchResult(!result, this->m_descr);
+                return MatchResult(!result, this->m_description);
             }
         };
 
@@ -80,7 +80,7 @@ namespace matcher
             {
                 auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
                 bool result = ( actual.size() == expSize );
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -97,7 +97,7 @@ namespace matcher
                                         std::end(actual), 
                                         [&](const Expected& value)
                                             { return this->m_expected == value; });
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -113,7 +113,7 @@ namespace matcher
                 bool result = std::equal(std::begin(actual), 
                                         std::end(actual), 
                                         std::begin(this->m_expected));
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -129,16 +129,16 @@ namespace matcher
                 bool result = std::is_permutation(std::begin(actual), 
                                                 std::end(actual), 
                                                 std::begin(this->m_expected));
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
     }
 
     
     template<class Expected>
-    internal::Contains<Expected> contains(const Expected& e)
+    internal::Contains<Expected> contains(const Expected& expected)
     {
-        return internal::Contains<Expected>(e, "contains");
+        return internal::Contains<Expected>(expected, "contains");
     }
 
     
@@ -155,36 +155,36 @@ namespace matcher
 
     
     template<class Expected>
-    internal::SizeIs<Expected> sizeIs(const Expected& e)
+    internal::SizeIs<Expected> sizeIs(const Expected& expected)
     {
-        return internal::SizeIs<Expected>(e, "sizeIs");
+        return internal::SizeIs<Expected>(expected, "sizeIs");
     }
     
     template<>
-    internal::SizeIs<size_t> sizeIs(const size_t& e)
+    internal::SizeIs<size_t> sizeIs(const size_t& expected)
     {
-        return internal::SizeIs<size_t>(e, "sizeIs");
+        return internal::SizeIs<size_t>(expected, "sizeIs");
     }
 
     
     template<class Expected>
-    internal::EachIs<Expected> eachIs(const Expected& e)
+    internal::EachIs<Expected> eachIs(const Expected& expected)
     {
-        return internal::EachIs<Expected>(e, "eachIs");
+        return internal::EachIs<Expected>(expected, "eachIs");
     }
     
     
     template<class Expected>
-    internal::ElementsAre<Expected> elementsAre(const std::initializer_list<Expected>& e)
+    internal::ElementsAre<Expected> elementsAre(const std::initializer_list<Expected>& expected)
     {
-        return internal::ElementsAre<Expected>(e, "elementsAre");
+        return internal::ElementsAre<Expected>(expected, "elementsAre");
     }
     
     
     template<class Expected>
-    internal::ElementsAreUnordered<Expected> elementsAreUnordered(const std::initializer_list<Expected>& e)
+    internal::ElementsAreUnordered<Expected> elementsAreUnordered(const std::initializer_list<Expected>& expected)
     {
-        return internal::ElementsAreUnordered<Expected>(e, "elementsAreUnordered");
+        return internal::ElementsAreUnordered<Expected>(expected, "elementsAreUnordered");
     }
 }
 

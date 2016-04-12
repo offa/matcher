@@ -45,6 +45,7 @@ namespace matcher
             return m_description;
         }
 
+        
     private:
 
         const bool m_result;

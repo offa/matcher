@@ -40,7 +40,7 @@ namespace matcher
                 bool result = std::equal(std::begin(this->m_expected), 
                                         std::end(this->m_expected), 
                                         std::begin(actual));
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -54,7 +54,7 @@ namespace matcher
             {
                 auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
                 bool result = (actual.length() == expSize);
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -71,7 +71,7 @@ namespace matcher
                                             std::end(actual), 
                                             std::begin(this->m_expected));
                 bool result = ( itrPair.second == std::end(this->m_expected) );
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -88,7 +88,7 @@ namespace matcher
                                             actual.rend(), 
                                             this->m_expected.rbegin());
                 bool result = ( itrPair.second == this->m_expected.rend() );
-                return MatchResult(result, this->m_descr);
+                return MatchResult(result, this->m_description);
             }
         };
 
@@ -100,7 +100,7 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                return MatchResult(actual.empty(), this->m_descr);
+                return MatchResult(actual.empty(), this->m_description);
             }
         };
 
@@ -112,42 +112,42 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                return MatchResult((actual.empty() == false), this->m_descr);
+                return MatchResult((actual.empty() == false), this->m_description);
             }
         };
     }
     
 
     template<class Expected>
-    internal::StrEq<Expected> strEq(const Expected& e)
+    internal::StrEq<Expected> strEq(const Expected& expected)
     {
-        return internal::StrEq<Expected>(e, "strEq");
+        return internal::StrEq<Expected>(expected, "strEq");
     }
 
     
     template<class Expected>
-    internal::StrLength<Expected> strLength(const Expected& e)
+    internal::StrLength<Expected> strLength(const Expected& expected)
     {
-        return internal::StrLength<Expected>(e, "strLength");
+        return internal::StrLength<Expected>(expected, "strLength");
     }
 
     template<>
-    internal::StrLength<size_t> strLength(const size_t& e)
+    internal::StrLength<size_t> strLength(const size_t& expected)
     {
-        return internal::StrLength<size_t>(e, "strLength");
+        return internal::StrLength<size_t>(expected, "strLength");
     }
 
     template<class Expected>
-    internal::StrStartsWith<Expected> strStartsWith(const Expected& e)
+    internal::StrStartsWith<Expected> strStartsWith(const Expected& expected)
     {
-        return internal::StrStartsWith<Expected>(e, "strStartsWith");
+        return internal::StrStartsWith<Expected>(expected, "strStartsWith");
     }
 
     
     template<class Expected>
-    internal::StrEndsWith<Expected> strEndsWith(const Expected& e)
+    internal::StrEndsWith<Expected> strEndsWith(const Expected& expected)
     {
-        return internal::StrEndsWith<Expected>(e, "strEndsWith");
+        return internal::StrEndsWith<Expected>(expected, "strEndsWith");
     }
 
     

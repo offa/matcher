@@ -33,15 +33,15 @@ namespace matcher
         {
         public:
 
-            MatcherBase(const Expected& expected, const std::string& descr)
-                                : m_expected(expected), m_descr(descr)
+            MatcherBase(const Expected& expected, const std::string& description)
+                                : m_expected(expected), m_description(description)
             {
             }
 
         protected:
 
             const Expected& m_expected;
-            const std::string m_descr;
+            const std::string m_description;
         };
 
         template<>
@@ -49,13 +49,15 @@ namespace matcher
         {
         public:
 
-            explicit MatcherBase(const std::string& descr) : m_descr(descr)
+            explicit MatcherBase(const std::string& description)
+                                    : m_description(description)
             {
             }
             
+
         protected:
             
-            const std::string m_descr;
+            const std::string m_description;
         };
 
     }
