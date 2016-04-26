@@ -44,7 +44,7 @@ int main(int argc, char** argv)
 ## Testing
 
 ```
-mkdir build
+mkdir build && cd build
 cmake ..
 make
 make unittest
