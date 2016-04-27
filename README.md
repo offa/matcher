@@ -21,6 +21,10 @@ Header only - no compilation / installation is required.
 ## Example
 
 ```cpp
+#include <vector>
+#include <cassert>
+#include "matcher/Matcher.h"
+
 int main(int argc, char** argv)
 {
     using namespace matcher;
