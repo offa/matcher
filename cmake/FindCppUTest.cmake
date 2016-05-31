@@ -1,5 +1,5 @@
 find_package(PkgConfig)
-pkg_check_modules(PKG_CppUTest QUIET libCppUTest)
+pkg_check_modules(PKG_CppUTest QUIET CppUTest)
 set(CppUTest_DEFINITIONS ${PKG_CppUTest_CFLAGS_OTHER})
 
 find_path(CppUTest_INCLUDE_DIR "CppUTest/TestHarness.h"
@@ -7,7 +7,7 @@ find_path(CppUTest_INCLUDE_DIR "CppUTest/TestHarness.h"
                                         "${CppUTest_DIR}/include"
                                 )
 
-find_library(CppUTest_LIBRARY NAMES CppUTest libCppUTest
+find_library(CppUTest_LIBRARY NAMES CppUTest CppUTest
                                 HINTS ${PKG_CppUTest_LIBDIR}
                                         ${PKG_CppUTest_LIBRARY_DIRS}
                                         "${CppUTest_DIR}/lib"
