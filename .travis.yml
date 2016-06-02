@@ -18,7 +18,7 @@ matrix:
 #            - llvm-toolchain-precise-3.8
 #            - llvm-toolchain-precise-3.7
 #            - llvm-toolchain-precise-3.6
-#            - kalakris-cmake
+            - kalakris-cmake
     - env: CXX=g++-4.9 CC=gcc-4.9
       addons:
         apt:
