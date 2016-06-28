@@ -3,7 +3,7 @@ message(STATUS "Building Unit Tests ${UNITTEST}")
 find_package(CppUTest REQUIRED)
 
 add_library(testmain OBJECT TestMain.cpp)
-target_include_directories(testmain PUBLIC
+target_include_directories(testmain SYSTEM PUBLIC
                             ${CppUTest_INCLUDE_DIR}
                             ${CppUTest_Ext_INCLUDE_DIR}
                             )
