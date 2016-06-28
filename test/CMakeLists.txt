@@ -13,7 +13,7 @@ macro(_add_test _NAME _SRC)
     add_executable(${_NAME} ${${_SRC}} $<TARGET_OBJECTS:testmain>)
     add_test(NAME ${_NAME} COMMAND ${_NAME})
 
-    target_include_directories(${_NAME} PUBLIC
+    target_include_directories(${_NAME} SYSTEM PUBLIC
                                 ${CppUTest_INCLUDE_DIR}
                                 ${CppUTest_Ext_INCLUDE_DIR}
                                 )
