@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -18,8 +18,7 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATCHER_H
-#define MATCHER_H
+#pragma once
 
 #include "matcher/Actual.h"
 #include "matcher/CombinationMatcher.h"
@@ -27,6 +26,4 @@
 #include "matcher/ContainerMatcher.h"
 #include "matcher/DoubleMatcher.h"
 #include "matcher/StringMatcher.h"
-
-#endif /* MATCHER_H */
 

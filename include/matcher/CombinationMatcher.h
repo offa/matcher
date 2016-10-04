@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -18,8 +18,7 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef COMBINATIONMATCHER_H
-#define COMBINATIONMATCHER_H
+#pragma once
 
 #include <tuple>
 #include "MatcherBase.h"
@@ -39,22 +38,22 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = ( this->m_expected(actual).getResult() 
+                bool result = ( this->m_expected(actual).getResult()
                                 && m_expected2(actual).getResult() );
                 return MatchResult(result, this->m_description);
             }
-            
+
         protected:
-            
+
             const Expected2& m_expected2;
         };
-        
-        
+
+
         template<class Expected>
         struct Negate : protected MatcherBase<Expected>
         {
             using MatcherBase<Expected>::MatcherBase;
-            
+
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
@@ -63,22 +62,19 @@ namespace matcher
             }
         };
     }
-    
-    
+
+
     template<class Expected1, class Expected2>
     internal::Both<Expected1, Expected2> both(const Expected1& expected1, const Expected2& expected2)
     {
         return internal::Both<Expected1, Expected2>(expected1, expected2, "both");
     }
-    
-    
+
+
     template<class Expected>
     internal::Negate<Expected> negate(const Expected& expected)
     {
         return internal::Negate<Expected>(expected, "negate");
     }
 }
-
-
-#endif /* COMBINATIONMATCHER_H */
 

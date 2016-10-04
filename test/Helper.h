@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -18,14 +18,13 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HELPER_H
-#define HELPER_H
+#pragma once
 
 #include "matcher/MatchResult.h"
 #include <CppUTest/TestHarness.h>
 
 template<class T, class Matcher>
-void checkMatcher(const T& cmp, const Matcher& matcher, bool expectedResult, 
+void checkMatcher(const T& cmp, const Matcher& matcher, bool expectedResult,
                     const char* expMsg, const char* file, size_t line)
 {
     matcher::MatchResult result = matcher.operator()(cmp);
@@ -38,7 +37,4 @@ void checkMatcher(const T& cmp, const Matcher& matcher, bool expectedResult,
 #define CHECK_MATCHER(value, matcher, expectedResult, msg)   \
             checkMatcher(value, matcher, expectedResult, msg, __FILE__, __LINE__)
 
-
-
-#endif /* HELPER_H */
 

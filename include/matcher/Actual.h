@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -18,8 +18,7 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ACTUAL_H
-#define ACTUAL_H
+#pragma once
 
 #include "matcher/MatchResult.h"
 
@@ -53,7 +52,7 @@ namespace matcher
 
     };
 
-    
+
     template<class T>
     Actual<T> expect(const T& value)
     {
@@ -61,6 +60,4 @@ namespace matcher
     }
 
 }
-
-#endif /* ACTUAL_H */
 

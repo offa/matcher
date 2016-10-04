@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -18,8 +18,7 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CONTAINERMATCHER_H
-#define CONTAINERMATCHER_H
+#pragma once
 
 #include "MatcherBase.h"
 #include <algorithm>
@@ -43,11 +42,11 @@ namespace matcher
             }
         };
 
-        
+
         struct IsEmpty : protected MatcherBase<void>
         {
             using MatcherBase<void>::MatcherBase;
-            
+
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
@@ -56,11 +55,11 @@ namespace matcher
             }
         };
 
-        
+
         struct IsNotEmpty : protected MatcherBase<void>
         {
             using MatcherBase<void>::MatcherBase;
-            
+
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
@@ -69,12 +68,12 @@ namespace matcher
             }
         };
 
-        
+
         template<class Expected>
         struct SizeIs : protected MatcherBase<Expected>
         {
             using MatcherBase<Expected>::MatcherBase;
-            
+
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
@@ -84,110 +83,107 @@ namespace matcher
             }
         };
 
-        
+
         template<class Expected>
         struct EachIs : protected MatcherBase<Expected>
         {
             using MatcherBase<Expected>::MatcherBase;
-            
+
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
                 bool result = std::all_of(std::begin(actual),
-                                        std::end(actual), 
+                                        std::end(actual),
                                         [&](const Expected& value)
                                             { return this->m_expected == value; });
                 return MatchResult(result, this->m_description);
             }
         };
 
-        
+
         template<class Expected>
         struct ElementsAre : protected MatcherBase<std::initializer_list<Expected>>
         {
             using MatcherBase<std::initializer_list<Expected>>::MatcherBase;
-            
+
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = std::equal(std::begin(actual), 
-                                        std::end(actual), 
+                bool result = std::equal(std::begin(actual),
+                                        std::end(actual),
                                         std::begin(this->m_expected));
                 return MatchResult(result, this->m_description);
             }
         };
 
-        
+
         template<class Expected>
         struct ElementsAreUnordered : protected MatcherBase<std::initializer_list<Expected>>
         {
             using MatcherBase<std::initializer_list<Expected>>::MatcherBase;
-            
+
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = std::is_permutation(std::begin(actual), 
-                                                std::end(actual), 
+                bool result = std::is_permutation(std::begin(actual),
+                                                std::end(actual),
                                                 std::begin(this->m_expected));
                 return MatchResult(result, this->m_description);
             }
         };
     }
 
-    
+
     template<class Expected>
     internal::Contains<Expected> contains(const Expected& expected)
     {
         return internal::Contains<Expected>(expected, "contains");
     }
 
-    
+
     inline internal::IsEmpty isEmpty()
     {
         return internal::IsEmpty("isEmpty");
     }
-    
-    
+
+
     inline internal::IsNotEmpty isNotEmpty()
     {
         return internal::IsNotEmpty("isNotEmpty");
     }
 
-    
+
     template<class Expected>
     internal::SizeIs<Expected> sizeIs(const Expected& expected)
     {
         return internal::SizeIs<Expected>(expected, "sizeIs");
     }
-    
+
     template<>
     internal::SizeIs<size_t> sizeIs(const size_t& expected)
     {
         return internal::SizeIs<size_t>(expected, "sizeIs");
     }
 
-    
+
     template<class Expected>
     internal::EachIs<Expected> eachIs(const Expected& expected)
     {
         return internal::EachIs<Expected>(expected, "eachIs");
     }
-    
-    
+
+
     template<class Expected>
     internal::ElementsAre<Expected> elementsAre(const std::initializer_list<Expected>& expected)
     {
         return internal::ElementsAre<Expected>(expected, "elementsAre");
     }
-    
-    
+
+
     template<class Expected>
     internal::ElementsAreUnordered<Expected> elementsAreUnordered(const std::initializer_list<Expected>& expected)
     {
         return internal::ElementsAreUnordered<Expected>(expected, "elementsAreUnordered");
     }
 }
-
-
-#endif /* CONTAINERMATCHER_H */
 

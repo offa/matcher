@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -18,8 +18,7 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DOUBLEMATCHER_H
-#define DOUBLEMATCHER_H
+#pragma once
 
 #include "MatcherBase.h"
 #include <cmath>
@@ -40,7 +39,7 @@ namespace matcher
             MatchResult operator()(const Actual& actual) const
             {
                 using std::fabs;
-                bool result = ( fabs(actual - this->m_expected ) 
+                bool result = ( fabs(actual - this->m_expected )
                                 <= m_epsilon * std::max(fabs(actual), fabs(this->m_expected)));
                 return MatchResult(result, this->m_description);
             }
@@ -51,13 +50,11 @@ namespace matcher
         };
     }
 
-    
+
     template<class Expected>
     internal::DoubleNear<Expected> doubleNear(const Expected& expected, const Expected& epsilon)
     {
         return internal::DoubleNear<Expected>(expected, epsilon, "doubleNear");
     }
 }
-
-#endif /* DOUBLEMATCHER_H */
 

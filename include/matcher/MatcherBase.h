@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -18,8 +18,7 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MATCHERBASE_H
-#define MATCHERBASE_H
+#pragma once
 
 #include "matcher/MatchResult.h"
 
@@ -53,16 +52,13 @@ namespace matcher
                                     : m_description(description)
             {
             }
-            
+
 
         protected:
-            
+
             const std::string m_description;
         };
 
     }
 }
-
-
-#endif /* MATCHERBASE_H */
 

@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -18,8 +18,7 @@
  * along with Matcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STRINGMATCHER_H
-#define STRINGMATCHER_H
+#pragma once
 
 #include "MatcherBase.h"
 #include <algorithm>
@@ -37,8 +36,8 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = std::equal(std::begin(this->m_expected), 
-                                        std::end(this->m_expected), 
+                bool result = std::equal(std::begin(this->m_expected),
+                                        std::end(this->m_expected),
                                         std::begin(actual));
                 return MatchResult(result, this->m_description);
             }
@@ -58,7 +57,7 @@ namespace matcher
             }
         };
 
-        
+
         template<class Expected>
         struct StrStartsWith : protected MatcherBase<Expected>
         {
@@ -67,15 +66,15 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                auto itrPair = std::mismatch(std::begin(actual), 
-                                            std::end(actual), 
+                auto itrPair = std::mismatch(std::begin(actual),
+                                            std::end(actual),
                                             std::begin(this->m_expected));
                 bool result = ( itrPair.second == std::end(this->m_expected) );
                 return MatchResult(result, this->m_description);
             }
         };
 
-        
+
         template<class Expected>
         struct StrEndsWith : protected MatcherBase<Expected>
         {
@@ -84,15 +83,15 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                auto itrPair = std::mismatch(actual.rbegin(), 
-                                            actual.rend(), 
+                auto itrPair = std::mismatch(actual.rbegin(),
+                                            actual.rend(),
                                             this->m_expected.rbegin());
                 bool result = ( itrPair.second == this->m_expected.rend() );
                 return MatchResult(result, this->m_description);
             }
         };
 
-        
+
         struct StrEmpty : protected MatcherBase<void>
         {
             using MatcherBase<void>::MatcherBase;
@@ -104,7 +103,7 @@ namespace matcher
             }
         };
 
-        
+
         struct StrNotEmpty : protected MatcherBase<void>
         {
             using MatcherBase<void>::MatcherBase;
@@ -116,7 +115,7 @@ namespace matcher
             }
         };
     }
-    
+
 
     template<class Expected>
     internal::StrEq<Expected> strEq(const Expected& expected)
@@ -124,7 +123,7 @@ namespace matcher
         return internal::StrEq<Expected>(expected, "strEq");
     }
 
-    
+
     template<class Expected>
     internal::StrLength<Expected> strLength(const Expected& expected)
     {
@@ -143,25 +142,23 @@ namespace matcher
         return internal::StrStartsWith<Expected>(expected, "strStartsWith");
     }
 
-    
+
     template<class Expected>
     internal::StrEndsWith<Expected> strEndsWith(const Expected& expected)
     {
         return internal::StrEndsWith<Expected>(expected, "strEndsWith");
     }
 
-    
+
     inline internal::StrEmpty strEmpty()
     {
         return internal::StrEmpty("strEmpty");
     }
 
-    
+
     inline internal::StrNotEmpty strNotEmpty()
     {
         return internal::StrNotEmpty("strNotEmpty");
     }
 }
-
-#endif /* STRINGMATCHER_H */
 
