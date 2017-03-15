@@ -25,12 +25,12 @@
 
 template<class T, class Matcher>
 void checkMatcher(const T& cmp, const Matcher& matcher, bool expectedResult,
-                    const char* expMsg, const char* file, size_t line)
+                    const std::string& expMsg, const std::string& file, size_t line)
 {
     matcher::MatchResult result = matcher.operator()(cmp);
 
-    CHECK_EQUAL_LOCATION(expectedResult, result.getResult(), nullptr, file, line);
-    STRCMP_EQUAL_LOCATION(expMsg, result.getDescription().c_str(), nullptr, file, line);
+    CHECK_EQUAL_LOCATION(expectedResult, result.getResult(), nullptr, file.c_str(), line);
+    STRCMP_EQUAL_LOCATION(expMsg.c_str(), result.getDescription().c_str(), nullptr, file.c_str(), line);
 }
 
 

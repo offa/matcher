@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016-2017  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -31,24 +31,24 @@ TEST_GROUP(ActualTest)
 
 TEST(ActualTest, expectThatReturnsTrueOnMatch)
 {
-    auto result = expect(value).that(is(value));
+    const auto result = expect(value).that(is(value));
     CHECK_TRUE(result.getResult());
 }
 
 TEST(ActualTest, expectThatReturnsFalseOnMismatch)
 {
-    auto result = expect(value).that(is(value + 1));
+    const auto result = expect(value).that(is(value + 1));
     CHECK_FALSE(result.getResult());
 }
 
 TEST(ActualTest, expectMatchReturnsTrueOnMatch)
 {
-    bool result = expect(value).match(is(value));
+    const bool result = expect(value).match(is(value));
     CHECK_TRUE(result);
 }
 
 TEST(ActualTest, expectMatchReturnsFalseOnMismatch)
 {
-    bool result = expect(value).match(is(value + 1));
+    const bool result = expect(value).match(is(value + 1));
     CHECK_FALSE(result);
 }

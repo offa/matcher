@@ -1,7 +1,7 @@
 /*
  * Matcher - C++ Matchers.
  * Copyright (C) 2016-2017  offa
- * 
+ *
  * This file is part of Matcher.
  *
  * Matcher is free software: you can redistribute it and/or modify
@@ -82,13 +82,13 @@ TEST(ContainerMatcherTest, sizeIs)
 {
     CHECK_MATCHER(vec, sizeIs(vec.size()), true, "sizeIs");
     CHECK_MATCHER(vec, sizeIs(vec.size() + 1), false, "sizeIs");
-    
+
     CHECK_MATCHER(arr, sizeIs(vec.size()), true, "sizeIs");
     CHECK_MATCHER(str, sizeIs(vec.size() + 1), false, "sizeIs");
-    
+
     CHECK_MATCHER(str, sizeIs(vec.size()), true, "sizeIs");
     CHECK_MATCHER(arr, sizeIs(vec.size() + 1), false, "sizeIs");
-    
+
     vec.clear();
     str.clear();
     CHECK_MATCHER(vec, sizeIs(0), true, "sizeIs");
@@ -111,10 +111,10 @@ TEST(ContainerMatcherTest, elementsAre)
 {
     CHECK_MATCHER(vec, elementsAre({1, 2, 3}), true, "elementsAre");
     CHECK_MATCHER(vec, elementsAre({1, 2, 4}), false, "elementsAre");
-    
+
     CHECK_MATCHER(arr, elementsAre({1, 2, 3}), true, "elementsAre");
     CHECK_MATCHER(arr, elementsAre({1, 2, 4}), false, "elementsAre");
-    
+
     CHECK_MATCHER(str, elementsAre({'a', 'b', 'c'}), true, "elementsAre");
     CHECK_MATCHER(str, elementsAre({'a', 'b', 'x'}), false, "elementsAre");
 }
@@ -123,10 +123,10 @@ TEST(ContainerMatcherTest, elementsAreUnordered)
 {
     CHECK_MATCHER(vec, elementsAreUnordered({3, 1, 2}), true, "elementsAreUnordered");
     CHECK_MATCHER(vec, elementsAreUnordered({3, 1, 4}), false, "elementsAreUnordered");
-    
+
     CHECK_MATCHER(arr, elementsAreUnordered({3, 1, 2}), true, "elementsAreUnordered");
     CHECK_MATCHER(arr, elementsAreUnordered({3, 1, 4}), false, "elementsAreUnordered");
-    
+
     CHECK_MATCHER(str, elementsAreUnordered({'b', 'a', 'c'}), true, "elementsAreUnordered");
     CHECK_MATCHER(str, elementsAreUnordered({'b', 'a', 'x'}), false, "elementsAreUnordered");
 }
