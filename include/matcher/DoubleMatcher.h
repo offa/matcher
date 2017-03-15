@@ -39,8 +39,8 @@ namespace matcher
             MatchResult operator()(const Actual& actual) const
             {
                 using std::fabs;
-                bool result = ( fabs(actual - this->m_expected )
-                                <= m_epsilon * std::max(fabs(actual), fabs(this->m_expected)));
+                const bool result = ( fabs(actual - this->m_expected )
+                                    <= m_epsilon * std::max(fabs(actual), fabs(this->m_expected)));
                 return MatchResult(result, this->m_description);
             }
 

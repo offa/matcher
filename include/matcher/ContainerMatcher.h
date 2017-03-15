@@ -36,8 +36,8 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                auto itr = std::find(std::begin(actual), std::end(actual), this->m_expected);
-                bool result = ( itr != std::end(actual) );
+                const auto itr = std::find(std::begin(actual), std::end(actual), this->m_expected);
+                const bool result = ( itr != std::end(actual) );
                 return MatchResult(result, this->m_description);
             }
         };
@@ -50,7 +50,7 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = actual.empty();
+                const bool result = actual.empty();
                 return MatchResult(result, this->m_description);
             }
         };
@@ -63,7 +63,7 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = actual.empty();
+                const bool result = actual.empty();
                 return MatchResult(!result, this->m_description);
             }
         };
@@ -77,8 +77,8 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
-                bool result = ( actual.size() == expSize );
+                const auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
+                const bool result = ( actual.size() == expSize );
                 return MatchResult(result, this->m_description);
             }
         };
@@ -92,10 +92,8 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = std::all_of(std::begin(actual),
-                                        std::end(actual),
-                                        [&](const Expected& value)
-                                            { return this->m_expected == value; });
+                const bool result = std::all_of(std::begin(actual), std::end(actual),
+                                                [&](const Expected& value) { return this->m_expected == value; });
                 return MatchResult(result, this->m_description);
             }
         };
@@ -109,9 +107,7 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = std::equal(std::begin(actual),
-                                        std::end(actual),
-                                        std::begin(this->m_expected));
+                const bool result = std::equal(std::begin(actual), std::end(actual), std::begin(this->m_expected));
                 return MatchResult(result, this->m_description);
             }
         };
@@ -125,9 +121,7 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = std::is_permutation(std::begin(actual),
-                                                std::end(actual),
-                                                std::begin(this->m_expected));
+                const bool result = std::is_permutation(std::begin(actual), std::end(actual), std::begin(this->m_expected));
                 return MatchResult(result, this->m_description);
             }
         };

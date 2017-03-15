@@ -36,9 +36,9 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = std::equal(std::begin(this->m_expected),
-                                        std::end(this->m_expected),
-                                        std::begin(actual));
+                const bool result = std::equal(std::begin(this->m_expected),
+                                                std::end(this->m_expected),
+                                                std::begin(actual));
                 return MatchResult(result, this->m_description);
             }
         };
@@ -51,8 +51,8 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
-                bool result = (actual.length() == expSize);
+                const auto expSize = static_cast<typename Actual::size_type>(this->m_expected);
+                const bool result = (actual.length() == expSize);
                 return MatchResult(result, this->m_description);
             }
         };
@@ -66,10 +66,10 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                auto itrPair = std::mismatch(std::begin(actual),
-                                            std::end(actual),
-                                            std::begin(this->m_expected));
-                bool result = ( itrPair.second == std::end(this->m_expected) );
+                const auto itrPair = std::mismatch(std::begin(actual),
+                                                    std::end(actual),
+                                                    std::begin(this->m_expected));
+                const bool result = ( itrPair.second == std::end(this->m_expected) );
                 return MatchResult(result, this->m_description);
             }
         };
@@ -83,10 +83,10 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                auto itrPair = std::mismatch(actual.rbegin(),
-                                            actual.rend(),
-                                            this->m_expected.rbegin());
-                bool result = ( itrPair.second == this->m_expected.rend() );
+                const auto itrPair = std::mismatch(actual.rbegin(),
+                                                    actual.rend(),
+                                                    this->m_expected.rbegin());
+                const bool result = ( itrPair.second == this->m_expected.rend() );
                 return MatchResult(result, this->m_description);
             }
         };
@@ -123,7 +123,6 @@ namespace matcher
         return internal::StrEq<Expected>(expected, "strEq");
     }
 
-
     template<class Expected>
     internal::StrLength<Expected> strLength(const Expected& expected)
     {
@@ -142,19 +141,16 @@ namespace matcher
         return internal::StrStartsWith<Expected>(expected, "strStartsWith");
     }
 
-
     template<class Expected>
     internal::StrEndsWith<Expected> strEndsWith(const Expected& expected)
     {
         return internal::StrEndsWith<Expected>(expected, "strEndsWith");
     }
 
-
     inline internal::StrEmpty strEmpty()
     {
         return internal::StrEmpty("strEmpty");
     }
-
 
     inline internal::StrNotEmpty strNotEmpty()
     {

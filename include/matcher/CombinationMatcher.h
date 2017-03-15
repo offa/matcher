@@ -38,8 +38,8 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = ( this->m_expected(actual).getResult()
-                                && m_expected2(actual).getResult() );
+                const bool result = ( this->m_expected(actual).getResult()
+                                    && m_expected2(actual).getResult() );
                 return MatchResult(result, this->m_description);
             }
 
@@ -57,7 +57,7 @@ namespace matcher
             template<class Actual>
             MatchResult operator()(const Actual& actual) const
             {
-                bool result = !this->m_expected(actual).getResult();
+                const bool result = !this->m_expected(actual).getResult();
                 return MatchResult(result, this->m_description);
             }
         };

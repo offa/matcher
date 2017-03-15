@@ -49,7 +49,6 @@ namespace matcher
     private:
 
         const T& m_value;
-
     };
 
 
