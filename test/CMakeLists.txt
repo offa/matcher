@@ -29,7 +29,7 @@ list(APPEND TEST_SRC ActualTest.cpp
                     StringMatcherTest.cpp
                     MatchResultTest.cpp
                     )
-add_test_suite("AllTests" TEST_SRC)
+add_test_suite(AllTests TEST_SRC)
 
 
 set(TEST_FLAGS -c)
