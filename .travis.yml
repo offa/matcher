@@ -24,12 +24,3 @@ before_install:
 
 script:
   - docker run -v ${PWD}:/mnt -it ${DOCKER_IMG}/${COMPILER} /bin/bash -c "cd /mnt; script/ci_build.sh"
-
-
-
-script:
-    - mkdir build && cd build
-    - cmake -DUNITTEST_VERBOSE=ON ..
-    - make
-    - make unittest
-
