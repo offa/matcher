@@ -1,13 +1,7 @@
-message(STATUS "Building Unit Tests ${UNITTEST}")
-
 find_package(CppUTest REQUIRED)
 
 add_library(testmain TestMain.cpp)
-target_include_directories(testmain SYSTEM PUBLIC
-                            ${CppUTest_INCLUDE_DIR}
-                            ${CppUTest_Ext_INCLUDE_DIR}
-                            )
-target_link_libraries(testmain PUBLIC ${CppUTest_LIBRARY})
+target_link_libraries(testmain PUBLIC CppUTest::CppUTest CppUTest::Mock)
 
 
 function(add_test_suite name src)
