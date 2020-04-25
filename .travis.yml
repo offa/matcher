@@ -10,7 +10,7 @@ env:
     - DOCKER_IMG="registry.gitlab.com/offa/docker-images-ci/dist-matcher"
 
 
-matrix:
+jobs:
     include:
     - env: COMPILER=gcc-10
     - env: COMPILER=gcc-9
