@@ -1,5 +1,6 @@
 # [Matcher](https://github.com/offa/matcher)
 
+[![CI](https://github.com/offa/matcher/workflows/ci/badge.svg)](https://github.com/offa/matcher/actions)
 [![Build Status](https://travis-ci.org/offa/matcher.svg?branch=master)](https://travis-ci.org/offa/matcher)
 [![GitHub release](https://img.shields.io/github/release/offa/matcher.svg)](https://github.com/offa/matcher/releases)
 [![License](https://img.shields.io/badge/license-GPLv3-yellow.svg)](LICENSE)
