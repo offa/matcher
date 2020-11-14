@@ -1,7 +1,6 @@
 # [Matcher](https://github.com/offa/matcher)
 
 [![CI](https://github.com/offa/matcher/workflows/ci/badge.svg)](https://github.com/offa/matcher/actions)
-[![Build Status](https://travis-ci.org/offa/matcher.svg?branch=master)](https://travis-ci.org/offa/matcher)
 [![GitHub release](https://img.shields.io/github/release/offa/matcher.svg)](https://github.com/offa/matcher/releases)
 [![License](https://img.shields.io/badge/license-GPLv3-yellow.svg)](LICENSE)
 ![C++](https://img.shields.io/badge/c++-11-green.svg)
@@ -75,4 +74,3 @@ It's also possible to use `make test` / `ctest` instead. For `unittest` it's pos
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
